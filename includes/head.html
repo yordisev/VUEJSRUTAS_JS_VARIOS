@@ -1,0 +1,93 @@
+<html>
+
+<head>
+    <title>VueJs Introduction</title>
+    <link rel="shortcut icon" type="image/png" href="images/icons/favicon-16x16.png" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.4/css/bulma.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/mdi/4.9.95/css/materialdesignicons.min.css">
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script> -->
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <!--Include the vuejs-dialog plugin-->
+    <!-- <script type="text/javascript" src="https://unpkg.com/vuejs-dialog@0.4.7/dist/vuejs-dialog.min.js"></script> -->
+
+</head>
+
+<body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item">
+                    <strong>Home</strong>
+                </a>
+
+                <a class="navbar-item">
+                    <strong>Documentation</strong>
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        <strong>More</strong>
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">
+                            <strong>About</strong>
+                        </a>
+                        <a class="navbar-item">
+                            <strong>Jobs</strong>
+                        </a>
+                        <a class="navbar-item">
+                            <strong>Contact</strong>
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item">
+                            <strong>Report an issue</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            <strong>Yordis Escorcia Vasquez</strong>
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <div class="card-content">
+                                <div class="media-content">
+                                    <p class="title is-4">John Smith</p>
+                                    <p class="subtitle is-6">@johnsmith</p>
+                                </div>
+                                <br>
+                                <footer class="card-footer">
+                                    <a href="#" class="button is-success">Editar</a>
+                                    <a href="#" class="button is-danger">Cerrar</a>
+                                </footer>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="intro" style="text-align:center;">
+        <h1 class="title">{{ message }}</h1>
+    </div>

@@ -1,0 +1,122 @@
+<html>
+   <head>
+      <title>VueJs Add User</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.4/css/bulma.min.css">
+      <link rel="shortcut icon" type="image/png" href="images/icons/favicon-16x16.png"/>
+       <script src="https://unpkg.com/vee-validate@2.1.0-beta.2/dist/vee-validate.js"></script>
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+     
+   </head>
+   <body>
+       <div id="intro" style = "text-align:center;">
+           <!-- Go back-->
+         <input type='button' @click='goBack()' value='Go back' class="button is-success is-rounded">
+            <br><br>
+         <h2 class="title">{{ message }}</h2>       
+      </div>
+       
+       
+       <!--<div id='myapp'>-->
+       <form id="app" @submit.prevent="submitForm" action="" 
+             method="post" class="box"
+             style="margin-left: 300px;width: 500px;">   
+           <div class="message">
+               <h1>{{ stmessage }}</h1>
+               <h1>{{ res }}</h1>
+               
+           </div>
+                
+            <section class="form">
+             <div class="field">
+               <label class="label">Name</label>
+               <div class="control">
+                 <input v-model="name" name="name"  v-validate="'required|length:10'" class="input is-rounded" type="text" 
+                        placeholder="Name" required>
+               </div>   
+             </div>
+             <div class="field">
+               <label class="label">UserName</label>
+               <div class="control">
+                 <input v-model="username" name="username" v-validate="'required|length:10'" class="input is-rounded" 
+                        type="text" placeholder="User Name" required>
+               </div>
+             </div>
+             <div class="field">
+               <label class="label">Email</label>
+               <div class="control">
+                   <input v-model="email" name="email" v-validate="'email'"
+                          class="input is-rounded"
+                        type="text" placeholder="Email" required>
+                  <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
+               </div>
+             </div>
+            <p>
+                <div class="box has-text-centered">
+                    <!--<input class="button is-primary" type="submit" value="Submit">-->
+                     <button @click="stmessage ^= true" type="submit" class="button is-primary" name="button">Submit</button>
+                </div>
+            </p>
+             </section>
+        </form>
+       <!--</div>-->
+       
+       <script type = "text/javascript">
+         var vue_det = new Vue({
+            el: '#intro',
+            data: {
+               message: 'Add New User'
+            },
+            methods:{
+                goBack: function(){
+                      location.href = 'index.html';
+                  }
+            }
+         });
+        Vue.use(VeeValidate);  
+        var app = new Vue({
+            el:'#app',
+            data() {
+                return {
+                    stmessage : '',
+                    username :'', // initialise this to an empty string
+                    name :'', // same thing
+                    email :'', // same thing
+                    res :'', // same thing
+                }
+            },
+            methods:{
+              submitForm:function(e) {
+                let self = this;
+                //for sending post request refer :https://stackoverflow.com/questions/48839798/axios-post-request-not-working-when-passed-object
+                axios.get('fetchUsers.php', {
+                  params: {
+                    username: this.username,
+                    name:this.name,
+                    email:this.email,
+                    action : "adduser"
+                  }
+               })
+               .then(function (response) {
+                  app.users = response.data;
+                  if(response.data !== "")this.stmessage = response;
+                  this.res = response;
+                  //Hide the status message after 3 seconds
+                    setTimeout(function(){
+                            self.stmessage = '';
+                    }, 3000);
+               })
+               .catch(function (error) {
+                   console.log(error);
+//                   this.stmessage = false;
+               });
+                event.preventDefault();
+              }
+            }
+        })
+        
+        
+        </script>
+    </body>
+</html>
+              
